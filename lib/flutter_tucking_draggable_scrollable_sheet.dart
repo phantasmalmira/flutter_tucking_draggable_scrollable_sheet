@@ -12,13 +12,20 @@ class TuckingDraggableScrollableSheet extends StatelessWidget {
   final bool snap;
   final DraggableScrollableController? controller;
 
+  /// The extent of how far the sheet is tucked into [tucking] initially.
+  /// Defaults to 0.0. Must be between 0.0 and 1.0.
+  /// 0.0 means the tucking is fully visible.
+  /// 1.0 means the tucking is fully behind the sheet.
+  final double initialTuckedExtent;
+
   const TuckingDraggableScrollableSheet({
     super.key,
     this.tucking,
     required this.sheetBuilder,
     this.snap = true,
     this.controller,
-  });
+    this.initialTuckedExtent = 0.0,
+  }) : assert(initialTuckedExtent >= 0.0 && initialTuckedExtent <= 1.0);
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +40,24 @@ class TuckingDraggableScrollableSheet extends StatelessWidget {
               /// Min child size is when tucking is visible
               final minChildSize =
                   constraints.minHeight / constraints.maxHeight;
+              final initialChildSize = initialTuckedExtent == 0.0
+                  ? minChildSize
+
+                  /// Sets it to exact minChildSize to avoid rounding errors
+                  : initialTuckedExtent == 1.0
+                      ? 1.0
+
+                      /// Sets it to exact 1.0 to avoid rounding errors
+                      : (1 - minChildSize) * initialTuckedExtent + minChildSize;
+
+              /// Calculates the initialChildSize based on initialTuckedExtent
               return DraggableScrollableSheet(
                 snap: snap,
                 expand: true,
                 controller: controller,
                 minChildSize: minChildSize,
                 maxChildSize: 1,
-                initialChildSize: minChildSize,
+                initialChildSize: initialChildSize,
                 builder: sheetBuilder,
               );
             },
@@ -52,7 +70,6 @@ class TuckingDraggableScrollableSheet extends StatelessWidget {
 
 class _TuckingDraggableScrollableSheetDelegate
     extends MultiChildLayoutDelegate {
-
   @override
   void performLayout(Size size) {
     var tuckingSize = Size.zero;
