@@ -1,6 +1,6 @@
 library flutter_tucking_draggable_scrollable_sheet;
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 const _kLayoutIdTucking = 'tucking';
 const _kLayoutIdSheet = 'sheet';

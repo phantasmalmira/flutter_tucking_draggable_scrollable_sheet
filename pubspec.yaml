@@ -1,6 +1,6 @@
 name: flutter_tucking_draggable_scrollable_sheet
 description: Enhanced DraggableScrollableSheet constrained to a tucking widget
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/phantasmalmira/flutter_tucking_draggable_scrollable_sheet
 
 environment:
