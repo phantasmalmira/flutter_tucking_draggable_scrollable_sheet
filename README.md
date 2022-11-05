@@ -1,39 +1,47 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_tucking_draggable_scrollable_sheet
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+[![pub package](https://pub.dartlang.org/packages/flutter_tucking_draggable_scrollable_sheet.svg)](https://pub.dartlang.org/packages/flutter_tucking_draggable_scrollable_sheet)
+[![GitHub Stars](https://img.shields.io/github/stars/phantasmalmira/flutter_tucking_draggable_scrollable_sheet.svg?logo=github)](https://github.com/phantasmalmira/flutter_tucking_draggable_scrollable_sheet)
+![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-green.svg)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+Basically a [DraggableScrollableSheet](https://api.flutter.dev/flutter/widgets/DraggableScrollableSheet-class.html), but enhanced by constraining the `minChildSize` and `maxChilldSize` accordingly to the `tucking` widget.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+<p>
+  <img width="205px" alt="Example" src="https://raw.githubusercontent.com/phantasmalmira/flutter_tucking_draggable_scrollable_sheet/main/screenshots/example.gif"/>
+</p>
 
-## Features
+## Installation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Add the following to your `pubspec.yaml` file
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```yaml
+dependencies:
+    flutter_tucking_draggable_scrollable_sheet: ^1.0.0
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+TuckingDraggableScrollableSheet(
+    /// Control snapping of [DraggableScrollableSheet]
+    snap: true,
+    /// Extent of how much [tucking] widget is tucked behind the sheet initially
+    initialTuckedExtent: 0.0
+    /// The [Widget] that will be covered when sheet is fully expanded
+    tucking: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text('Tucking Subtitle'),
+    ),
+    /// Builder is forwarded to [DraggableScrollableSheet]
+    sheetBuilder: (context, scrollController) => Card(
+        child: ListView.builder(
+            /// Ensure [scrollController] is passed to nesting scroll views
+            controller: scrollController,
+            itemBuilder: (context, index) => ListTile(
+                title: Text('Item $index'),
+            ),
+            itemCount: 100,
+        ),
+    ),
+)
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
