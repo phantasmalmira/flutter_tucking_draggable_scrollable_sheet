@@ -4,7 +4,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/phantasmalmira/flutter_tucking_draggable_scrollable_sheet.svg?logo=github)](https://github.com/phantasmalmira/flutter_tucking_draggable_scrollable_sheet)
 ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-green.svg)
 
-Basically a [DraggableScrollableSheet](https://api.flutter.dev/flutter/widgets/DraggableScrollableSheet-class.html), but enhanced by constraining the `minChildSize` and `maxChilldSize` accordingly to the `tucking` widget.
+Basically a [DraggableScrollableSheet](https://api.flutter.dev/flutter/widgets/DraggableScrollableSheet-class.html), but enhanced by constraining the `minChildSize` and `maxChildSize` accordingly to the `tucking` widget.
 
 <p>
   <img width="205px" alt="Example" src="https://raw.githubusercontent.com/phantasmalmira/flutter_tucking_draggable_scrollable_sheet/main/screenshots/example.gif"/>
