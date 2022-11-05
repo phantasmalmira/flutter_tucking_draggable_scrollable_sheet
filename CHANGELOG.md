@@ -1,3 +1,7 @@
-## 0.0.1
+# flutter_tucking_draggable_scrollable_sheet
 
-* TODO: Describe initial release.
+Changelog for the package is as follows
+
+## 1.0.0
+
+Initial release
